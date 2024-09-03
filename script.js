@@ -11,4 +11,15 @@ function getComputerChoice () {
     }
 }
 
-console.log(getComputerChoice());
+// console.log(getComputerChoice());
+
+function getHumanChoice () {
+    const choice = prompt("Enter your choice (rock, paper or scissors):");
+    if (choice == "rock" || choice == "paper" || choice == "scissors") {
+        return choice;
+    } else {
+        getHumanChoice();
+    }
+}
+
+console.log(getHumanChoice());
