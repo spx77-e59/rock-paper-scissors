@@ -1,5 +1,3 @@
-console.log("yo");
-
 function getComputerChoice () {
     const random = Math.random();
     if (random<0.34) {
@@ -11,8 +9,6 @@ function getComputerChoice () {
     }
 }
 
-// console.log(getComputerChoice());
-
 function getHumanChoice () {
     const choice = prompt("Enter your choice (rock, paper or scissors):");
     if (choice == "rock" || choice == "paper" || choice == "scissors") {
@@ -22,4 +18,7 @@ function getHumanChoice () {
     }
 }
 
-console.log(getHumanChoice());
+let humanScore = 0;
+let computerScore = 0;
+
+
