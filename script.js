@@ -1,15 +1,15 @@
-function getComputerChoice () {
+function getComputerChoice() {
     const random = Math.random();
-    if (random<0.34) {
+    if (random < 0.34) {
         return "rock";
-    } else if(random<0.64) {
+    } else if (random < 0.64) {
         return "paper";
     } else {
         return "scissors";
     }
 }
 
-function getHumanChoice () {
+function getHumanChoice() {
     const choice = prompt("Enter your choice (rock, paper or scissors):");
     if (choice == "rock" || choice == "paper" || choice == "scissors") {
         return choice;
@@ -21,4 +21,55 @@ function getHumanChoice () {
 let humanScore = 0;
 let computerScore = 0;
 
+function playRound(humanChoice, computerChoice) {
 
+    console.log(humanChoice,computerChoice);
+
+    if (humanChoice == "rock") {
+        switch (computerChoice) {
+            case "rock":
+                console.log("Draw. Both rock.");
+                break;
+            case "paper":
+                console.log("You lose! Paper beats rock.");
+                computerScore++;
+                break;
+            case "scissors":
+                console.log("You win! Rock beats scissors.");
+                humanScore++;
+                break;
+        }
+    } else if (humanChoice == "paper") {
+        switch (computerChoice) {
+            case "rock":
+                console.log("You win! Paper beats rock.");
+                humanScore++;
+                break;
+            case "paper":
+                console.log("Draw. Both paper.");
+                break;
+            case "scissors":
+                console.log("You lose! Scissors beat paper.");
+                computerScore++;
+                break;
+        }
+    } else if (humanChoice == "scissors") {
+        switch (computerChoice) {
+            case "rock":
+                console.log("You lose! Rock beats scissors.");
+                computerScore++;
+                break;
+            case "paper":
+                console.log("You win! Scissors beat paper.");
+                humanScore++;
+                break;
+            case "scissors":
+                console.log("Draw.Both scissors.");
+                break;
+        }
+    }
+
+    console.log(`Human Score: ${humanScore}, Computer Score: ${computerScore}`);
+}
+
+playRound(getHumanChoice(), getComputerChoice());
