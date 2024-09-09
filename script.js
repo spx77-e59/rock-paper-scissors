@@ -1,41 +1,32 @@
 function getComputerChoice() {
   const random = Math.random();
-  if (random < 0.34) {
-    return "rock";
-  } else if (random < 0.64) {
-    return "paper";
-  } else {
-    return "scissors";
-  }
+  if (random < 0.34) return "rock";
+  if (random < 0.64) return "paper";
+  return "scissors";
 }
 
 let humanScore = 0;
 let computerScore = 0;
+
 const buttons = document.querySelectorAll("button");
 const result = document.querySelector("#result");
-const score = document.createElement("p");
-const winner = document.createElement("h2");
-const p = document.createElement("p");
+const scoreElem = document.createElement("p");
+const winnerElem = document.createElement("h2");
+const messageElem = document.createElement("p");
 
-score.textContent = `Human Score: ${humanScore}, Computer Score: ${computerScore}`;
+function updateScore(){
+    scoreElem.textContent = `Human Score: ${humanScore}, Computer Score: ${computerScore}`;
+}
 
-result.appendChild(score);
-result.appendChild(p);
-result.appendChild(winner);
+updateScore();
+
+result.appendChild(scoreElem);
+result.appendChild(messageElem);
+result.appendChild(winnerElem);
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
-    switch (button.id) {
-      case "rock":
-        playRound("rock", getComputerChoice());
-        break;
-      case "paper":
-        playRound("paper", getComputerChoice());
-        break;
-      case "scissors":
-        playRound("scissors", getComputerChoice());
-        break;
-    }
+    playRound(button.id, getComputerChoice());
   });
 });
 
@@ -97,12 +88,13 @@ function playRound(humanChoice, computerChoice) {
       case "draw":
         break;
     }
-    score.textContent = `Human Score: ${humanScore}, Computer Score: ${computerScore}`;
-    p.textContent = content;
+    updateScore();
+    messageElem.textContent = content;
   }
   if (humanScore === 5 || computerScore === 5) {
-    humanScore > computerScore
-      ? (winner.textContent = "You Win! Game over.")
-      : (winner.textContent = "You lost! Game over.");
+    winnerElem.textContent =
+      humanScore > computerScore
+        ? "You Win! Game over."
+        : "You lost! Game over.";
   }
 }
