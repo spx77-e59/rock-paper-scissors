@@ -15,10 +15,12 @@ const buttons = document.querySelectorAll("button");
 const result = document.querySelector("#result");
 const score = document.createElement("p");
 const winner = document.createElement("h2");
+const p = document.createElement("p");
 
 score.textContent = `Human Score: ${humanScore}, Computer Score: ${computerScore}`;
 
 result.appendChild(score);
+result.appendChild(p);
 result.appendChild(winner);
 
 buttons.forEach((button) => {
@@ -38,7 +40,6 @@ buttons.forEach((button) => {
 });
 
 function playRound(humanChoice, computerChoice) {
-  const p = document.createElement("p");
   let win = "draw";
 
   if (humanChoice == "rock") {
@@ -96,7 +97,6 @@ function playRound(humanChoice, computerChoice) {
         break;
     }
     score.textContent = `Human Score: ${humanScore}, Computer Score: ${computerScore}`;
-    result.appendChild(p);
   }
   if (humanScore === 5 || computerScore === 5) {
     humanScore > computerScore
