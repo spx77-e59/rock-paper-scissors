@@ -41,47 +41,48 @@ buttons.forEach((button) => {
 
 function playRound(humanChoice, computerChoice) {
   let win = "draw";
+  let content = "";
 
   if (humanChoice == "rock") {
     switch (computerChoice) {
       case "rock":
-        p.textContent = "Draw. Both rock.";
+        content = "Draw. Both rock.";
         break;
       case "paper":
-        p.textContent = "You lose! Paper beats rock.";
+        content = "You lose! Paper beats rock.";
         win = "lost";
         break;
       case "scissors":
-        p.textContent = "You win! Rock beats scissors.";
+        content = "You win! Rock beats scissors.";
         win = "win";
         break;
     }
   } else if (humanChoice == "paper") {
     switch (computerChoice) {
       case "rock":
-        p.textContent = "You win! Paper beats rock.";
+        content = "You win! Paper beats rock.";
         win = "win";
         break;
       case "paper":
-        p.textContent = "Draw. Both paper.";
+        content = "Draw. Both paper.";
         break;
       case "scissors":
-        p.textContent = "You lose! Scissors beat paper.";
+        content = "You lose! Scissors beat paper.";
         win = "lost";
         break;
     }
   } else if (humanChoice == "scissors") {
     switch (computerChoice) {
       case "rock":
-        p.textContent = "You lose! Rock beats scissors.";
+        content = "You lose! Rock beats scissors.";
         win = "lost";
         break;
       case "paper":
-        p.textContent = "You win! Scissors beat paper.";
+        content = "You win! Scissors beat paper.";
         win = "win";
         break;
       case "scissors":
-        p.textContent = "Draw.Both scissors.";
+        content = "Draw.Both scissors.";
         break;
     }
   }
@@ -97,6 +98,7 @@ function playRound(humanChoice, computerChoice) {
         break;
     }
     score.textContent = `Human Score: ${humanScore}, Computer Score: ${computerScore}`;
+    p.textContent = content;
   }
   if (humanScore === 5 || computerScore === 5) {
     humanScore > computerScore
