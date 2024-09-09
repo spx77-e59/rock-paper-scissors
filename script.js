@@ -9,14 +9,18 @@ function getComputerChoice() {
   }
 }
 
-
 let humanScore = 0;
 let computerScore = 0;
 const buttons = document.querySelectorAll("button");
 const result = document.querySelector("#result");
 const score = document.createElement("p");
-  score.textContent = `Human Score: ${humanScore}, Computer Score: ${computerScore}`;
-  result.appendChild(score);
+const winner = document.createElement("h2");
+
+score.textContent = `Human Score: ${humanScore}, Computer Score: ${computerScore}`;
+
+result.appendChild(score);
+result.appendChild(winner);
+
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     switch (button.id) {
@@ -34,51 +38,69 @@ buttons.forEach((button) => {
 });
 
 function playRound(humanChoice, computerChoice) {
-  console.log(humanChoice, computerChoice);
   const p = document.createElement("p");
+  let win = "draw";
+
   if (humanChoice == "rock") {
     switch (computerChoice) {
       case "rock":
         p.textContent = "Draw. Both rock.";
         break;
       case "paper":
-         p.textContent = "You lose! Paper beats rock.";
-        computerScore++;
+        p.textContent = "You lose! Paper beats rock.";
+        win = "lost";
         break;
       case "scissors":
-         p.textContent = "You win! Rock beats scissors.";
-        humanScore++;
+        p.textContent = "You win! Rock beats scissors.";
+        win = "win";
         break;
     }
   } else if (humanChoice == "paper") {
     switch (computerChoice) {
       case "rock":
-         p.textContent = "You win! Paper beats rock.";
-        humanScore++;
+        p.textContent = "You win! Paper beats rock.";
+        win = "win";
         break;
       case "paper":
-         p.textContent = "Draw. Both paper.";
+        p.textContent = "Draw. Both paper.";
         break;
       case "scissors":
-         p.textContent = "You lose! Scissors beat paper.";
-        computerScore++;
+        p.textContent = "You lose! Scissors beat paper.";
+        win = "lost";
         break;
     }
   } else if (humanChoice == "scissors") {
     switch (computerChoice) {
       case "rock":
-         p.textContent = "You lose! Rock beats scissors.";
-        computerScore++;
+        p.textContent = "You lose! Rock beats scissors.";
+        win = "lost";
         break;
       case "paper":
-         p.textContent = "You win! Scissors beat paper.";
-        humanScore++;
+        p.textContent = "You win! Scissors beat paper.";
+        win = "win";
         break;
       case "scissors":
-         p.textContent = "Draw.Both scissors.";
+        p.textContent = "Draw.Both scissors.";
         break;
     }
   }
-  score.textContent = `Human Score: ${humanScore}, Computer Score: ${computerScore}`;
-  result.appendChild(p);
+  if (humanScore < 5 && computerScore < 5) {
+    switch (win) {
+      case "win":
+        ++humanScore;
+        break;
+      case "lost":
+        ++computerScore;
+        break;
+      case "draw":
+        break;
+    }
+    score.textContent = `Human Score: ${humanScore}, Computer Score: ${computerScore}`;
+    result.appendChild(p);
+  }
+  if (humanScore === 5 || computerScore === 5) {
+    humanScore > computerScore
+      ? (winner.textContent = "You Win! Game over.")
+      : (winner.textContent = "You lost! Game over.");
+  }
 }
